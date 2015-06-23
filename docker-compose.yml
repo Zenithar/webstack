@@ -1,0 +1,18 @@
+nginx:
+    image: zenithar/nano-nginx:1.9.2
+    volumes:
+        - "./nginx:/etc/nginx"
+        - "./www:/www:ro"
+    ports:
+        - "80:80"
+    links:
+        - "worker:worker"
+
+worker:
+    build: worker
+    ports:
+        - "9000:9000"
+    volumes:
+        - "./www:/www:ro"
+
+
